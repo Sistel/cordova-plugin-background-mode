@@ -168,15 +168,21 @@ NSString* const kAPPBackgroundEventDeactivate = @"deactivate";
                                sharedInstance];
 
     // Don't activate the audio session yet
-    [session setActive:NO error:NULL];
+    [session setActive:NO error:nil];
+    
+    NSError *setCategoryError = nil;
 
-    // Play music even in background and dont stop playing music
-    // even another app starts playing sound
-    [session setCategory:AVAudioSessionCategoryPlayback
-                   error:NULL];
+    // Allows the application to mix its audio with audio from other apps.
+    if (![session setCategory:AVAudioSessionCategoryPlayback
+                  withOptions:AVAudioSessionCategoryOptionMixWithOthers
+                        error:&setCategoryError]) {
 
+        NSLog (@"Error setting audio session category.");
+        return;
+    }
+    
     // Active the audio session
-    [session setActive:YES error:NULL];
+    [session setActive:YES error:nil];
 };
 
 #pragma mark -
