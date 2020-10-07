@@ -87,10 +87,12 @@ NSString* const kAPPBackgroundEventDeactivate = @"deactivate";
 - (void) enableIOSAudio:(CDVInvokedUrlCommand*)command
 {
     enableIOSAudio = YES;
+    [self execCallback:command];
 }
 - (void) disableIOSAudio:(CDVInvokedUrlCommand*)command
 {
     enableIOSAudio = NO;
+    [self execCallback:command];
 }
 
 /**
