@@ -42,6 +42,16 @@ exports.enable = function()
     cordova.exec(fn, null, 'BackgroundMode', 'enable', []);
 };
 
+exports.enableIOSAudio = function()
+{
+    cordova.exec(fn, null, 'BackgroundMode', 'enableIOSAudio', []);
+};
+
+exports.disableIOSAudio = function()
+{
+    cordova.exec(fn, null, 'BackgroundMode', 'disableIOSAudio', []);
+};
+
 /**
  * Deactivates the background mode. When deactivated the application
  * will not stay awake while in background.

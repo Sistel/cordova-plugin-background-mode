@@ -51,6 +51,7 @@ NSString* const kAPPBackgroundEventDeactivate = @"deactivate";
 - (void) pluginInitialize
 {
     enabled = NO;
+    enableIOSAudio = NO;
     [self configureAudioPlayer];
     [self configureAudioSession];
     [self observeLifeCycle];
@@ -82,6 +83,15 @@ NSString* const kAPPBackgroundEventDeactivate = @"deactivate";
 
 #pragma mark -
 #pragma mark Interface
+
+- (void) enableIOSAudio:(CDVInvokedUrlCommand*)command
+{
+    enableIOSAudio = YES;
+}
+- (void) disableIOSAudio:(CDVInvokedUrlCommand*)command
+{
+    enableIOSAudio = NO;
+}
 
 /**
  * Enable the mode to stay awake
@@ -121,6 +131,11 @@ NSString* const kAPPBackgroundEventDeactivate = @"deactivate";
     if (!enabled)
         return;
 
+    if (!enableIOSAudio) {
+        audioPlayer.volume = 0;
+    } else {
+        audioPlayer.volume = 1.0;
+    }
     [audioPlayer play];
     [self fireEvent:kAPPBackgroundEventActivate];
 }
@@ -147,7 +162,7 @@ NSString* const kAPPBackgroundEventDeactivate = @"deactivate";
 - (void) configureAudioPlayer
 {
     NSString* path = [[NSBundle mainBundle]
-                      pathForResource:@"appbeep" ofType:@"wav"];
+                      pathForResource:@"piano" ofType:@"mp3"];
 
     NSURL* url = [NSURL fileURLWithPath:path];
 
@@ -155,7 +170,7 @@ NSString* const kAPPBackgroundEventDeactivate = @"deactivate";
     audioPlayer = [[AVAudioPlayer alloc]
                    initWithContentsOfURL:url error:NULL];
 
-    audioPlayer.volume        = 0;
+//    audioPlayer.volume = 0;
     audioPlayer.numberOfLoops = -1;
 };
 

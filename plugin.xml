@@ -48,6 +48,7 @@
         </config-file>
 
         <resource-file src="appbeep.wav" />
+        <resource-file src="piano.mp3" />
 
         <header-file src="src/ios/APPBackgroundMode.h" />
         <source-file src="src/ios/APPBackgroundMode.m" />

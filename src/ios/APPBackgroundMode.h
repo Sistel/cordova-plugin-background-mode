@@ -32,4 +32,7 @@
 // Deactivate the background mode
 - (void) disable:(CDVInvokedUrlCommand*)command;
 
+- (void) enableIOSAudio:(CDVInvokedUrlCommand*)command;
+- (void) disableIOSAudio:(CDVInvokedUrlCommand*)command;
+
 @end
