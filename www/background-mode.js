@@ -44,12 +44,12 @@ exports.enable = function()
 
 exports.enableIOSAudio = function()
 {
-    cordova.exec(fn, null, 'BackgroundMode', 'enableIOSAudio', []);
+    cordova.exec(null, null, 'BackgroundMode', 'enableIOSAudio', []);
 };
 
 exports.disableIOSAudio = function()
 {
-    cordova.exec(fn, null, 'BackgroundMode', 'disableIOSAudio', []);
+    cordova.exec(null, null, 'BackgroundMode', 'disableIOSAudio', []);
 };
 
 /**
