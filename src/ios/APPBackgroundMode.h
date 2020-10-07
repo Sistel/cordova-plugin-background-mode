@@ -25,6 +25,7 @@
 @interface APPBackgroundMode : CDVPlugin {
     AVAudioPlayer* audioPlayer;
     BOOL enabled;
+    BOOL enableIOSAudio;
 }
 
 // Activate the background mode
